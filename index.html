@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Foundry Room | We design and deploy AI agents that do the work</title>
+    <meta name="description" content="The Foundry Room designs, builds and runs custom AI agents that take over real business workflows: support, sales ops, research, finance and operations. Available for freelance and project engagements.">
+    <meta name="theme-color" content="#07080d">
+    <meta property="og:title" content="The Foundry Room | AI agents that do the work">
+    <meta property="og:description" content="Custom AI agents, designed, deployed and supervised end to end. Pilot in 2 weeks.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thefoundryroom.in">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "The Foundry Room",
+      "url": "https://thefoundryroom.in",
+      "email": "hello@thefoundryroom.in",
+      "description": "Design and deployment of custom AI agents for business workflows.",
+      "areaServed": "Worldwide",
+      "serviceType": ["AI agent development", "Workflow automation", "LLM integration", "AI consulting"]
+    }
+    </script>
+</head>
+<body>
+    <canvas id="network" aria-hidden="true"></canvas>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
+    <header class="nav" id="nav">
+        <div class="wrap nav-inner">
+            <a href="#top" class="brand" aria-label="The Foundry Room home">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span>The Foundry Room</span>
+            </a>
+            <nav class="nav-links" id="navLinks" aria-label="Primary">
+                <a href="#demo">Live demo</a>
+                <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#roi">ROI</a>
+                <a href="#work">Work</a>
+                <a href="#engage">Engage</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <a href="#contact" class="btn btn-sm btn-glow nav-cta">Book a call</a>
+            <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
+        </div>
+    </header>
+
+    <main id="top">
+        <!-- HERO -->
+        <section class="hero wrap">
+            <div class="pill reveal"><span class="dot"></span> Open for new projects</div>
+            <h1 class="reveal">
+                We build AI agents<br>
+                that <span class="rotator" id="rotator" aria-live="polite"><span class="grad">answer your customers</span></span>
+            </h1>
+            <p class="lead reveal">The Foundry Room designs, deploys and supervises custom AI agents that take real work off your team's plate. Not chatbots. Systems that plan, use your tools, and hand off to humans when it matters.</p>
+            <div class="hero-cta reveal">
+                <a href="#contact" class="btn btn-glow">Start a pilot <span aria-hidden="true">&rarr;</span></a>
+                <a href="#demo" class="btn btn-ghost">Watch an agent work</a>
+            </div>
+            <ul class="hero-stats reveal" aria-label="Key facts">
+                <li><strong>2 weeks</strong><span>to a working pilot</span></li>
+                <li><strong>Human-in-loop</strong><span>approval on risky actions</span></li>
+                <li><strong>Your stack</strong><span>Slack, CRM, ERP, email, Sheets</span></li>
+                <li><strong>You own it</strong><span>code, prompts, and data</span></li>
+            </ul>
+        </section>
+
+        <!-- TOOLS STRIP -->
+        <section class="strip" aria-label="Technologies we work with">
+            <div class="marquee">
+                <div class="marquee-track">
+                    <span>Claude</span><span>OpenAI</span><span>Gemini</span><span>LangGraph</span><span>MCP</span><span>RAG</span><span>pgvector</span><span>n8n</span><span>Python</span><span>TypeScript</span><span>FastAPI</span><span>Postgres</span><span>WhatsApp API</span><span>Slack</span><span>Zoho</span><span>Tally</span>
+                    <span>Claude</span><span>OpenAI</span><span>Gemini</span><span>LangGraph</span><span>MCP</span><span>RAG</span><span>pgvector</span><span>n8n</span><span>Python</span><span>TypeScript</span><span>FastAPI</span><span>Postgres</span><span>WhatsApp API</span><span>Slack</span><span>Zoho</span><span>Tally</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIVE DEMO -->
+        <section id="demo" class="section wrap">
+            <div class="sec-head reveal">
+                <span class="eyebrow">Live demo</span>
+                <h2>Watch an agent do a job end to end</h2>
+                <p>Pick a workflow. This is a simulated run that shows how our agents plan, call tools, check their own work, and escalate to a human.</p>
+            </div>
+            <div class="demo reveal">
+                <div class="demo-tabs" role="tablist" aria-label="Demo scenarios">
+                    <button class="tab active" role="tab" aria-selected="true" data-scn="support">Support triage</button>
+                    <button class="tab" role="tab" aria-selected="false" data-scn="invoice">Invoice processing</button>
+                    <button class="tab" role="tab" aria-selected="false" data-scn="leads">Lead qualification</button>
+                    <button class="tab" role="tab" aria-selected="false" data-scn="research">Market research</button>
+                </div>
+                <div class="demo-body">
+                    <div class="term" id="term" role="log" aria-live="off">
+                        <div class="term-bar"><i></i><i></i><i></i><span id="termTitle">agent://support-triage</span><button class="replay" id="replay" aria-label="Replay demo">&#8635; Replay</button></div>
+                        <div class="term-out" id="termOut"></div>
+                    </div>
+                    <aside class="demo-side">
+                        <h3 id="sideTitle">Outcome</h3>
+                        <p id="sideText"></p>
+                        <div class="meters" id="meters"></div>
+                        <p class="fine">Simulated for illustration. Real agents are tuned to your data, tools and approval rules.</p>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="services" class="section wrap">
+            <div class="sec-head reveal">
+                <span class="eyebrow">What we build</span>
+                <h2>Agents for the work nobody wants to do twice</h2>
+                <p>Every engagement starts with one painful, repeatable workflow and ends with an agent you can measure.</p>
+            </div>
+            <div class="grid cards">
+                <article class="card reveal tilt">
+                    <div class="ico">&#9679;</div>
+                    <h3>Customer-facing agents</h3>
+                    <p>Support, onboarding and booking agents on web, WhatsApp and email. Grounded in your docs, with clean human handoff.</p>
+                    <ul><li>Knowledge-base RAG</li><li>Multilingual, incl. Hindi and regional</li><li>CSAT and escalation tracking</li></ul>
+                </article>
+                <article class="card reveal tilt">
+                    <div class="ico">&#9670;</div>
+                    <h3>Back-office automation</h3>
+                    <p>Agents that read invoices, reconcile entries, chase approvals and update your ERP, accounting and spreadsheets.</p>
+                    <ul><li>Document extraction and validation</li><li>Approval workflows</li><li>Audit trail for every action</li></ul>
+                </article>
+                <article class="card reveal tilt">
+                    <div class="ico">&#9650;</div>
+                    <h3>Sales and ops agents</h3>
+                    <p>Lead enrichment, qualification, follow-ups and CRM hygiene running in the background while your team sells.</p>
+                    <ul><li>CRM and inbox integration</li><li>Scoring and routing</li><li>Meeting prep briefs</li></ul>
+                </article>
+                <article class="card reveal tilt">
+                    <div class="ico">&#9632;</div>
+                    <h3>Research and analysis agents</h3>
+                    <p>Agents that gather sources, compare options and produce cited reports, dashboards and daily briefings.</p>
+                    <ul><li>Web and document research</li><li>Structured, cited outputs</li><li>Scheduled monitoring</li></ul>
+                </article>
+                <article class="card reveal tilt">
+                    <div class="ico">&#9733;</div>
+                    <h3>Multi-agent systems</h3>
+                    <p>Teams of specialised agents with an orchestrator, shared memory and guardrails, for workflows too big for one prompt.</p>
+                    <ul><li>Planner, worker, reviewer roles</li><li>Tool use via MCP and APIs</li><li>Evals and regression tests</li></ul>
+                </article>
+                <article class="card reveal tilt">
+                    <div class="ico">&#9674;</div>
+                    <h3>AI strategy and audits</h3>
+                    <p>A 1 week review of where agents will pay back fastest in your business, with a ranked roadmap and cost model.</p>
+                    <ul><li>Workflow mapping</li><li>Build vs buy advice</li><li>Risk and data-privacy review</li></ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section id="process" class="section wrap">
+            <div class="sec-head reveal">
+                <span class="eyebrow">How we work</span>
+                <h2>From messy workflow to supervised agent in four steps</h2>
+            </div>
+            <ol class="steps">
+                <li class="step reveal"><span class="num">01</span><h3>Discover</h3><p>We map the workflow, find the repeated decisions, and define what &ldquo;done correctly&rdquo; looks like.</p><em>Days 1 to 3</em></li>
+                <li class="step reveal"><span class="num">02</span><h3>Design</h3><p>Agent architecture, tools, guardrails and approval points. You see the plan and the success metrics before we build.</p><em>Days 4 to 5</em></li>
+                <li class="step reveal"><span class="num">03</span><h3>Build and test</h3><p>Working pilot on real data with an evaluation set, so quality is measured, not guessed.</p><em>Weeks 1 to 2</em></li>
+                <li class="step reveal"><span class="num">04</span><h3>Deploy and supervise</h3><p>Rollout, monitoring dashboard, cost tracking and monthly tuning. We stay on until it is boringly reliable.</p><em>Ongoing</em></li>
+            </ol>
+        </section>
+
+        <!-- ROI CALCULATOR -->
+        <section id="roi" class="section wrap">
+            <div class="sec-head reveal">
+                <span class="eyebrow">ROI estimator</span>
+                <h2>What could an agent save you?</h2>
+                <p>A rough model to start the conversation. Adjust the sliders for one workflow.</p>
+            </div>
+            <div class="roi reveal">
+                <div class="roi-inputs">
+                    <label>Tasks per month <output id="oTasks">1,500</output>
+                        <input type="range" id="iTasks" min="100" max="20000" step="100" value="1500">
+                    </label>
+                    <label>Minutes per task (human) <output id="oMin">8</output>
+                        <input type="range" id="iMin" min="1" max="60" step="1" value="8">
+                    </label>
+                    <label>Cost per staff hour (INR) <output id="oRate">&#8377;300</output>
+                        <input type="range" id="iRate" min="100" max="3000" step="50" value="300">
+                    </label>
+                    <label>Share the agent can fully handle <output id="oShare">70%</output>
+                        <input type="range" id="iShare" min="20" max="95" step="5" value="70">
+                    </label>
+                </div>
+                <div class="roi-out">
+                    <div class="big"><span id="rSave">&#8377;0</span><small>estimated monthly saving</small></div>
+                    <div class="roi-row"><div><strong id="rHours">0</strong><span>staff hours freed / month</span></div><div><strong id="rYear">&#8377;0</strong><span>per year</span></div></div>
+                    <div class="bar"><div class="bar-fill" id="rBar"></div></div>
+                    <p class="fine">Illustrative only. It ignores build and running costs, which we scope with you. Real results depend on data quality and process.</p>
+                    <a href="#contact" class="btn btn-glow btn-sm">Get a real estimate</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORK -->
+        <section id="work" class="section wrap">
+            <div class="sec-head reveal">
+                <span class="eyebrow">Example engagements</span>
+                <h2>The kinds of agents we deliver</h2>
+                <p>Representative scenarios showing scope and approach. Specific client case studies are shared under NDA on request.</p>
+            </div>
+            <div class="grid work">
+                <article class="work-card reveal tilt">
+                    <span class="tag">Hospitality</span>
+                    <h3>Reservation and inventory agent</h3>
+                    <p>Handles WhatsApp bookings, answers menu and timing questions, and flags low stock from daily sales sheets to the manager.</p>
+                    <div class="chips"><span>WhatsApp API</span><span>Google Sheets</span><span>RAG</span></div>
+                </article>
+                <article class="work-card reveal tilt">
+                    <span class="tag">Finance</span>
+                    <h3>Accounts payable agent</h3>
+                    <p>Extracts invoice data, matches it to purchase orders, drafts entries for approval, and highlights mismatches.</p>
+                    <div class="chips"><span>Document AI</span><span>Tally / Zoho</span><span>Approvals</span></div>
+                </article>
+                <article class="work-card reveal tilt">
+                    <span class="tag">Trading and markets</span>
+                    <h3>Market monitoring agent</h3>
+                    <p>Tracks watchlists and filings, summarises events with sources, and alerts a human. Analysis support, never unattended trading.</p>
+                    <div class="chips"><span>Data feeds</span><span>Scheduling</span><span>Alerts</span></div>
+                </article>
+                <article class="work-card reveal tilt">
+                    <span class="tag">B2B services</span>
+                    <h3>Lead research and outreach agent</h3>
+                    <p>Enriches inbound leads, scores fit, drafts personalised replies and logs everything in the CRM for rep review.</p>
+                    <div class="chips"><span>CRM</span><span>Email</span><span>Enrichment</span></div>
+                </article>
+            </div>
+        </section>
+
+        <!-- TRUST -->
+        <section class="section wrap">
+            <div class="sec-head reveal">
+                <span class="eyebrow">Reliability</span>
+                <h2>Agents you can trust with real work</h2>
+            </div>
+            <div class="grid trust">
+                <div class="tcard reveal"><h4>Human in the loop</h4><p>Money, deletions and external messages can require approval before they happen.</p></div>
+                <div class="tcard reveal"><h4>Evaluated, not guessed</h4><p>Every agent ships with a test set so changes are checked before they go live.</p></div>
+                <div class="tcard reveal"><h4>Full audit trail</h4><p>Each decision, tool call and source is logged and reviewable.</p></div>
+                <div class="tcard reveal"><h4>Your data stays yours</h4><p>Least-privilege access, secrets management, and options for private deployment.</p></div>
+            </div>
+        </section>
+
+        <!-- ENGAGE -->
+        <section id="engage" class="section wrap">
+            <div class="sec-head reveal">
+                <span class="eyebrow">Ways to work together</span>
+                <h2>Start small, scale when it works</h2>
+                <p>Fixed scopes and clear milestones. Final pricing depends on integrations and volume, so we quote after a short call.</p>
+            </div>
+            <div class="grid plans">
+                <article class="plan reveal tilt">
+                    <h3>Agent Audit</h3>
+                    <p class="plan-sub">1 week</p>
+                    <ul><li>Workflow mapping and ranking</li><li>Cost and ROI model</li><li>Architecture recommendation</li><li>Written roadmap</li></ul>
+                    <a href="#contact" class="btn btn-ghost btn-sm" data-plan="Agent Audit">Ask about this</a>
+                </article>
+                <article class="plan featured reveal tilt">
+                    <span class="badge">Most chosen</span>
+                    <h3>Pilot Build</h3>
+                    <p class="plan-sub">2 to 4 weeks</p>
+                    <ul><li>One production-ready agent</li><li>Integrations with your tools</li><li>Evaluation set and guardrails</li><li>Handover and training</li></ul>
+                    <a href="#contact" class="btn btn-glow btn-sm" data-plan="Pilot Build">Ask about this</a>
+                </article>
+                <article class="plan reveal tilt">
+                    <h3>Agent Team Retainer</h3>
+                    <p class="plan-sub">Monthly</p>
+                    <ul><li>New agents and improvements</li><li>Monitoring and cost control</li><li>Model upgrades and tuning</li><li>Priority support</li></ul>
+                    <a href="#contact" class="btn btn-ghost btn-sm" data-plan="Agent Team Retainer">Ask about this</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section wrap narrow">
+            <div class="sec-head reveal">
+                <span class="eyebrow">FAQ</span>
+                <h2>Questions founders ask first</h2>
+            </div>
+            <div class="faq">
+                <details class="reveal"><summary>What is the difference between an agent and a chatbot?</summary><p>A chatbot answers questions. An agent pursues a goal: it plans steps, uses tools such as your CRM or email, checks results, and asks a human when it is unsure. That is what lets it finish a task, not just discuss it.</p></details>
+                <details class="reveal"><summary>Which AI models do you use?</summary><p>We choose per task. That usually means a frontier model such as Claude, OpenAI or Gemini for reasoning, and smaller models where cost and speed matter. We design so models can be swapped without rebuilding the system.</p></details>
+                <details class="reveal"><summary>Is my business data safe?</summary><p>We use least-privilege access, keep secrets out of code, and can restrict what leaves your environment. We will review data sensitivity with you before building, and can use providers with no-training data terms.</p></details>
+                <details class="reveal"><summary>What if the agent makes a mistake?</summary><p>Agents are not perfect, so we design for that: approval gates on risky actions, confidence thresholds, test sets, logging, and easy rollback. The aim is measured, bounded risk.</p></details>
+                <details class="reveal"><summary>Do I own what you build?</summary><p>Yes. You own the code, prompts and configuration delivered. Ongoing model and hosting costs are billed by the providers directly to you where possible.</p></details>
+                <details class="reveal"><summary>Do you work with small businesses and individual founders?</summary><p>Yes. Pilots are scoped to be affordable, so a single agent can prove value before any larger commitment.</p></details>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section wrap">
+            <div class="contact reveal">
+                <div class="contact-copy">
+                    <span class="eyebrow">Let&rsquo;s talk</span>
+                    <h2>Tell us the workflow that eats your week</h2>
+                    <p>Describe it in a few lines. We reply within one business day with questions or a suggested pilot.</p>
+                    <ul class="contact-list">
+                        <li><span>Email</span><a href="mailto:hello@thefoundryroom.in">hello@thefoundryroom.in</a></li>
+                        <li><span>Based in</span>India, working with clients worldwide</li>
+                        <li><span>Hours</span>Mon to Sat, IST</li>
+                    </ul>
+                </div>
+                <form class="form" id="contactForm" novalidate>
+                    <div class="row">
+                        <label>Name<input type="text" id="name" autocomplete="name" required></label>
+                        <label>Email<input type="email" id="email" autocomplete="email" required></label>
+                    </div>
+                    <label>Interested in
+                        <select id="interest">
+                            <option>Agent Audit</option>
+                            <option selected>Pilot Build</option>
+                            <option>Agent Team Retainer</option>
+                            <option>Not sure yet</option>
+                        </select>
+                    </label>
+                    <label>What should the agent do?
+                        <textarea id="message" rows="5" required placeholder="e.g. Reply to WhatsApp booking requests and update our sheet"></textarea>
+                    </label>
+                    <button type="submit" class="btn btn-glow">Send message</button>
+                    <p class="form-msg" id="formMsg" role="status"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap foot-inner">
+            <div><strong>The Foundry Room</strong><p>AI agents designed, deployed and supervised.</p></div>
+            <nav aria-label="Footer"><a href="#services">Services</a><a href="#process">Process</a><a href="#engage">Engage</a><a href="#contact">Contact</a></nav>
+            <p class="copy">&copy; <span id="year">2026</span> The Foundry Room. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
