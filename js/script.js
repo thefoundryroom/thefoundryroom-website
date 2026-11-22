@@ -349,11 +349,22 @@
         });
     });
 
-    /* ---------- Contact form (opens the visitor's email app, no backend required) ---------- */
+    /* ---------- Contact form ----------
+       Sends enquiries to your inbox through FormSubmit (free, no backend).
+       1. Set INBOX to a mailbox you read (Gmail works).
+       2. Submit the form once from the live site, then click the
+          activation link FormSubmit emails you. After that every enquiry arrives
+          in that inbox and you can reply straight to the sender.
+       If the service is unreachable, the form falls back to opening the
+       visitor's email app so no enquiry is lost. */
+    const INBOX = 'hello@thefoundryroom.in';
     const form = $('#contactForm');
     const msg = $('#formMsg');
-    const TO = 'hello@thefoundryroom.in';
-    form.addEventListener('submit', e => {
+    const btn = form.querySelector('button[type="submit"]');
+
+    function say(text, cls) { msg.className = 'form-msg ' + cls; msg.textContent = text; }
+
+    form.addEventListener('submit', async e => {
         e.preventDefault();
         const name = $('#name'), email = $('#email'), text = $('#message');
         [name, email, text].forEach(f => f.classList.remove('invalid'));
@@ -364,14 +375,41 @@
         if (bad.length) {
             bad.forEach(f => f.classList.add('invalid'));
             bad[0].focus();
-            msg.className = 'form-msg err';
-            msg.textContent = 'Please complete the highlighted fields (message needs a few words).';
+            say('Please complete the highlighted fields (message needs a few words).', 'err');
             return;
         }
-        const subject = `${$('#interest').value} enquiry from ${name.value.trim()}`;
-        const body = `Name: ${name.value.trim()}\nEmail: ${email.value.trim()}\nInterested in: ${$('#interest').value}\n\n${text.value.trim()}`;
-        window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        msg.className = 'form-msg ok';
-        msg.textContent = 'Opening your email app with the message ready to send. Or write to ' + TO + '.';
+        if ($('#website') && $('#website').value) return; // honeypot: bots fill this
+
+        const interest = $('#interest').value;
+        const payload = {
+            name: name.value.trim(),
+            email: email.value.trim(),
+            interest,
+            message: text.value.trim(),
+            _subject: `${interest} enquiry from ${name.value.trim()}`,
+            _replyto: email.value.trim(),
+            _template: 'table',
+            _captcha: 'false'
+        };
+
+        btn.disabled = true;
+        say('Sending...', 'ok');
+        try {
+            const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(INBOX), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || data.success === 'false' || data.success === false) throw new Error('send failed');
+            say('Thank you! Your message has reached us. We will reply within one business day.', 'ok');
+            form.reset();
+        } catch (err) {
+            const body = `Name: ${payload.name}\nEmail: ${payload.email}\nInterested in: ${interest}\n\n${payload.message}`;
+            window.location.href = `mailto:${INBOX}?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(body)}`;
+            say('Could not send directly, so we opened your email app instead. You can also write to ' + INBOX + '.', 'err');
+        } finally {
+            btn.disabled = false;
+        }
     });
 })();
