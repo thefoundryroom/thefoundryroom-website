@@ -357,7 +357,8 @@
           in that inbox and you can reply straight to the sender.
        If the service is unreachable, the form falls back to opening the
        visitor's email app so no enquiry is lost. */
-    const INBOX = 'dfoundryroom@gmail.com';
+    const INBOX = 'dfoundryroom@gmail.com';        // where form submissions are delivered (already activated)
+    const PUBLIC_EMAIL = 'hello@thefoundryroom.in'; // address shown to visitors
     const form = $('#contactForm');
     const msg = $('#formMsg');
     const btn = form.querySelector('button[type="submit"]');
@@ -401,13 +402,17 @@
                 body: JSON.stringify(payload)
             });
             const data = await res.json().catch(() => ({}));
-            if (!res.ok || data.success === 'false' || data.success === false) throw new Error('send failed');
+            if (!res.ok || data.success === 'false' || data.success === false) {
+                console.warn('FormSubmit response:', res.status, data);
+                throw new Error(data.message || ('HTTP ' + res.status));
+            }
             say('Thank you! Your message has reached us. We will reply within one business day.', 'ok');
             form.reset();
         } catch (err) {
             const body = `Name: ${payload.name}\nEmail: ${payload.email}\nInterested in: ${interest}\n\n${payload.message}`;
-            window.location.href = `mailto:${INBOX}?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(body)}`;
-            say('Could not send directly, so we opened your email app instead. You can also write to ' + INBOX + '.', 'err');
+            window.location.href = `mailto:${PUBLIC_EMAIL}?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(body)}`;
+            console.warn('Form send failed:', err);
+            say('Could not send directly (' + (err && err.message ? err.message : 'network error') + '), so we opened your email app instead. Please send it from there.', 'err');
         } finally {
             btn.disabled = false;
         }
