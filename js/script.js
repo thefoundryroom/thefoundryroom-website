@@ -357,7 +357,7 @@
           in that inbox and you can reply straight to the sender.
        If the service is unreachable, the form falls back to opening the
        visitor's email app so no enquiry is lost. */
-    const INBOX = 'hello@thefoundryroom.in';
+    const INBOX = 'dfoundryroom@gmail.com';
     const form = $('#contactForm');
     const msg = $('#formMsg');
     const btn = form.querySelector('button[type="submit"]');
